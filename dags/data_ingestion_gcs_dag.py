@@ -1,5 +1,6 @@
 import os
 import logging
+from datetime import datetime
 
 from airflow import DAG
 from airflow.utils.dates import days_ago
@@ -8,24 +9,36 @@ from airflow.operators.python import PythonOperator
 
 from google.cloud import storage
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
+
+import pandas as pd
+import pyarrow as pa
 import pyarrow.csv as pv
 import pyarrow.parquet as pq
 
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
 
-dataset_file = "yellow_tripdata_2021-01.csv"
-dataset_url = f"https://s3.amazonaws.com/nyc-tlc/trip+data/{dataset_file}"
+#https://divvy-tripdata.s3.amazonaws.com/202202-divvy-tripdata.zip
+year = '{:04d}'.format(datetime.now().year)
+month ='{:02d}'.format(datetime.now().month-1)
+dataset_file = year+month +'-divvy-tripdata.zip'
+dataset_url = f"https://divvy-tripdata.s3.amazonaws.com/{dataset_file}"
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 parquet_file = dataset_file.replace('.csv', '.parquet')
-BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'trips_data_all')
+BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'divvy_trips')
 
 
 def format_to_parquet(src_file):
     if not src_file.endswith('.csv'):
         logging.error("Can only accept source files in CSV format, for the moment")
         return
-    table = pv.read_csv(src_file)
+    df = pd.read_csv(src_file)
+    df.started_at = pd.to_datetime(df.started_at)
+    df.ended_at = pd.to_datetime(df.ended_at)
+
+    table = pa.Table.from_pandas(df)
+    pq.write_table(table, 'file_name.parquet')
+
     pq.write_table(table, src_file.replace('.csv', '.parquet'))
 
 
@@ -61,9 +74,10 @@ default_args = {
 # NOTE: DAG declaration - using a Context Manager (an implicit way)
 with DAG(
     dag_id="data_ingestion_gcs_dag",
-    schedule_interval="@daily",
+    schedule_interval="0 20 15 * *",
+    start_date=datetime(2020, 4, 1),
     default_args=default_args,
-    catchup=False,
+    catchup=True,
     max_active_runs=1,
     tags=['dtc-de'],
 ) as dag:
@@ -92,19 +106,20 @@ with DAG(
         },
     )
 
-    bigquery_external_table_task = BigQueryCreateExternalTableOperator(
-        task_id="bigquery_external_table_task",
-        table_resource={
-            "tableReference": {
-                "projectId": PROJECT_ID,
-                "datasetId": BIGQUERY_DATASET,
-                "tableId": "external_table",
-            },
-            "externalDataConfiguration": {
-                "sourceFormat": "PARQUET",
-                "sourceUris": [f"gs://{BUCKET}/raw/{parquet_file}"],
-            },
-        },
-    )
+    # bigquery_external_table_task = BigQueryCreateExternalTableOperator(
+    #     task_id="bigquery_external_table_task",
+    #     table_resource={
+    #         "tableReference": {
+    #             "projectId": PROJECT_ID,
+    #             "datasetId": BIGQUERY_DATASET,
+    #             "tableId": "external_table",
+    #         },
+    #         "externalDataConfiguration": {
+    #             "sourceFormat": "PARQUET",
+    #             "sourceUris": [f"gs://{BUCKET}/raw/{parquet_file}"],
+    #         },
+    #     },
+    # )
 
-    download_dataset_task >> format_to_parquet_task >> local_to_gcs_task >> bigquery_external_table_task
+    download_dataset_task >> format_to_parquet_task 
+    # >> local_to_gcs_task >> bigquery_external_table_task
