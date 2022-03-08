@@ -21,10 +21,11 @@ BUCKET = os.environ.get("GCP_GCS_BUCKET")
 #https://divvy-tripdata.s3.amazonaws.com/202202-divvy-tripdata.zip
 year = '{:04d}'.format(datetime.now().year)
 month ='{:02d}'.format(datetime.now().month-1)
-dataset_file = year+month +'-divvy-tripdata.zip'
-dataset_url = f"https://divvy-tripdata.s3.amazonaws.com/{dataset_file}"
+dataset_zip = year+month +'-divvy-tripdata.zip'
+csv_file = year+month +'-divvy-tripdata.csv'
+dataset_url = f"https://divvy-tripdata.s3.amazonaws.com/{dataset_zip}"
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
-parquet_file = dataset_file.replace('.csv', '.parquet')
+parquet_file = csv_file.replace('.csv', '.parquet')
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'divvy_trips')
 
 
@@ -66,7 +67,6 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 default_args = {
     "owner": "airflow",
-    "start_date": days_ago(1),
     "depends_on_past": False,
     "retries": 1,
 }
@@ -84,27 +84,32 @@ with DAG(
 
     download_dataset_task = BashOperator(
         task_id="download_dataset_task",
-        bash_command=f"curl -sSL {dataset_url} > {path_to_local_home}/{dataset_file}"
+        bash_command=f"curl -sSL {dataset_url} > {path_to_local_home}/{dataset_zip}"
+    )
+
+    unzip_data_file = BashOperator(
+        task_id = "unzip_data_file",
+        bash_command = f"unzip {dataset_zip} && trash {dataset_zip}"
     )
 
     format_to_parquet_task = PythonOperator(
         task_id="format_to_parquet_task",
         python_callable=format_to_parquet,
         op_kwargs={
-            "src_file": f"{path_to_local_home}/{dataset_file}",
+            "src_file": f"{path_to_local_home}/{csv_file}",
         },
     )
 
     # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
-    local_to_gcs_task = PythonOperator(
-        task_id="local_to_gcs_task",
-        python_callable=upload_to_gcs,
-        op_kwargs={
-            "bucket": BUCKET,
-            "object_name": f"raw/{parquet_file}",
-            "local_file": f"{path_to_local_home}/{parquet_file}",
-        },
-    )
+    # local_to_gcs_task = PythonOperator(
+    #     task_id="local_to_gcs_task",
+    #     python_callable=upload_to_gcs,
+    #     op_kwargs={
+    #         "bucket": BUCKET,
+    #         "object_name": f"raw/{parquet_file}",
+    #         "local_file": f"{path_to_local_home}/{parquet_file}",
+    #     },
+    # )
 
     # bigquery_external_table_task = BigQueryCreateExternalTableOperator(
     #     task_id="bigquery_external_table_task",
@@ -121,5 +126,5 @@ with DAG(
     #     },
     # )
 
-    download_dataset_task >> format_to_parquet_task 
+    download_dataset_task >> unzip_data_file >> format_to_parquet_task 
     # >> local_to_gcs_task >> bigquery_external_table_task

@@ -5,7 +5,7 @@ FROM apache/airflow:2.2.3
 ENV AIRFLOW_HOME=/opt/airflow
 
 USER root
-RUN apt-get update -qq && apt-get install vim -qqq
+RUN apt-get update -qq && apt-get install vim -qqq && sudo apt install unzip
 # git gcc g++ -qqq
 
 COPY requirements.txt .
@@ -31,7 +31,8 @@ RUN DOWNLOAD_URL="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/goo
        --usage-reporting=false \
        --quiet \
     && rm -rf "${TMP_DIR}" \
-    && gcloud --version
+    && gcloud --version 
+
 
 WORKDIR $AIRFLOW_HOME
 
