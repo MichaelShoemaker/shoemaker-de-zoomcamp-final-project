@@ -74,7 +74,7 @@ default_args = {
 
 # NOTE: DAG declaration - using a Context Manager (an implicit way)
 with DAG(
-    dag_id="data_ingestion_gcs_dag",
+    dag_id="data_ingestion_gcs_dag1",
     schedule_interval="0 20 15 * *",
     start_date=datetime(2020, 4, 1),
     default_args=default_args,
@@ -90,8 +90,9 @@ with DAG(
 
     unzip_data_file = BashOperator(
         task_id = "unzip_data_file",
-        bash_command = f"cd /opt/airflow && unzip {path_to_local_home}/{dataset_zip} && rm *.zip && rm __MACOS*"
+        bash_command = f"cd /opt/airflow && unzip {path_to_local_home}/{dataset_zip}"
     )
+
 
     format_to_parquet_task = PythonOperator(
         task_id="format_to_parquet_task",
@@ -99,6 +100,12 @@ with DAG(
         op_kwargs={
             "src_file": f"{path_to_local_home}/{csv_file}",
         },
+    )
+
+
+    clean_up_files = BashOperator(
+        task_id = "clean_up_files",
+        bash_command = 'cd /opt/airflow && rm *.zip *.csv && rm -rf __MACOS*'
     )
 
     # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
@@ -127,5 +134,5 @@ with DAG(
     #     },
     # )
 
-    download_dataset_task >> unzip_data_file >> format_to_parquet_task 
+    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files
     # >> local_to_gcs_task >> bigquery_external_table_task
