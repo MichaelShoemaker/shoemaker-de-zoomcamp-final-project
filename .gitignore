@@ -2,5 +2,9 @@
 *.parquet
 *.zip
 *__pycache__
+<<<<<<< HEAD
 /logs*
 logs*
+=======
+logs/*
+>>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a

@@ -7,6 +7,7 @@ from airflow.utils.dates import days_ago
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
+
 from google.cloud import storage
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
 
@@ -19,10 +20,17 @@ PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
 
 #https://divvy-tripdata.s3.amazonaws.com/202202-divvy-tripdata.zip
+<<<<<<< HEAD
 year = '{:04d}'.format(datetime.now().year)
 month ='{:02d}'.format(datetime.now().month-1)
 dataset_zip = year+month +'-divvy-tripdata.zip'
 csv_file = year+month +'-divvy-tripdata.csv'
+=======
+# year = '{:04d}'.format(datetime.now().year)
+# month ='{:02d}'.format(datetime.now().month-1)
+dataset_zip = "{{ execution_date.strftime(\'%Y%m\') }}-divvy-tripdata.zip"
+csv_file = "{{ execution_date.strftime(\'%Y%m\') }}-divvy-tripdata.csv"
+>>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
 dataset_url = f"https://divvy-tripdata.s3.amazonaws.com/{dataset_zip}"
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 parquet_file = csv_file.replace('.csv', '.parquet')
@@ -67,13 +75,17 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 default_args = {
     "owner": "airflow",
+<<<<<<< HEAD
     "depends_on_past": False,
+=======
+    "depends_on_past": True,
+>>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
     "retries": 1,
 }
 
 # NOTE: DAG declaration - using a Context Manager (an implicit way)
 with DAG(
-    dag_id="data_ingestion_gcs_dag",
+    dag_id="data_ingestion_gcs_dag1",
     schedule_interval="0 20 15 * *",
     start_date=datetime(2020, 4, 1),
     default_args=default_args,
@@ -89,8 +101,13 @@ with DAG(
 
     unzip_data_file = BashOperator(
         task_id = "unzip_data_file",
+<<<<<<< HEAD
         bash_command = f"unzip {dataset_zip} && trash {dataset_zip}"
+=======
+        bash_command = f"cd /opt/airflow && unzip {path_to_local_home}/{dataset_zip}"
+>>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
     )
+
 
     format_to_parquet_task = PythonOperator(
         task_id="format_to_parquet_task",
@@ -99,6 +116,25 @@ with DAG(
             "src_file": f"{path_to_local_home}/{csv_file}",
         },
     )
+
+<<<<<<< HEAD
+    # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
+    # local_to_gcs_task = PythonOperator(
+    #     task_id="local_to_gcs_task",
+    #     python_callable=upload_to_gcs,
+    #     op_kwargs={
+    #         "bucket": BUCKET,
+    #         "object_name": f"raw/{parquet_file}",
+    #         "local_file": f"{path_to_local_home}/{parquet_file}",
+    #     },
+    # )
+=======
+
+    clean_up_files = BashOperator(
+        task_id = "clean_up_files",
+        bash_command = 'cd /opt/airflow && rm *.zip *.csv && rm -rf __MACOS*'
+    )
+>>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
 
     # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
     # local_to_gcs_task = PythonOperator(
@@ -126,5 +162,9 @@ with DAG(
     #     },
     # )
 
+<<<<<<< HEAD
     download_dataset_task >> unzip_data_file >> format_to_parquet_task 
+=======
+    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files
+>>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
     # >> local_to_gcs_task >> bigquery_external_table_task

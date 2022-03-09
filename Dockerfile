@@ -5,7 +5,7 @@ FROM apache/airflow:2.2.3
 ENV AIRFLOW_HOME=/opt/airflow
 
 USER root
-RUN apt-get update -qq && apt-get install vim -qqq && sudo apt install unzip
+RUN apt-get update -qq && apt-get install -y vim unzip
 # git gcc g++ -qqq
 
 COPY requirements.txt .
