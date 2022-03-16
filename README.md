@@ -1,4 +1,5 @@
-# shoemaker-de-zoomcamp-final-project
+# Final Project for Data Engineering Zoom Camp
+---
 Final Project for de-zoomcamp 2022 (1st cohort)
 
 
