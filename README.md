@@ -1,11 +1,20 @@
-# Final Project for Data Engineering Zoom Camp
+# Project
 ---
 Final Project for de-zoomcamp 2022 (1st cohort)
 
 
-# PROJECT:
+# Project Summary:
 ---
 This project will aggregate historical Divvy Bike Data from the City of Chicago.
+
+# Technologies to be Used:
+---
+- GCP VM Instance (Processing)
+- Terraform (Infrascructure as a Service)
+- Airflow (Data Pipeline - ETL)
+- GCP Storage Bucket (Data Lake)
+- Big Query (Data Warehouse)
+- DBT (Creating Analytical Views)
 
 # Problem Description:
 ---
@@ -20,11 +29,19 @@ The data to be used for this project can be found here - [Divvy Bike Data](https
 Below is a sample of the data to be used:
 ![Screenshot](/images/DataSample-FinalProject.png)
 
-# Technologies to be Used:
----
-- GCP VM Instance (Processing)
-- Terraform (Infrascructure as a Service)
-- Airflow (Data Pipeline - ETL)
-- GCP Storage Bucket (Data Lake)
-- Big Query (Data Warehouse)
-- DBT (Creating Analytical Views)
+ride_id - Unique ID Assigned to Each Divvy Trip
+rideable_type - Type of Vehicle Used
+started_at - Start of Trip Date and Time
+ended_at - End of Trip Date and Time
+start_station_name - Name Assigned to Station the Trip Started at
+start_station_id - Unique Identification Number of Station the Trip Started at
+end_station_name - Name Assigned to Station the Trip Ended at
+end_station_id - Unique Identification Number of Station the Trip Ended at
+start_lat - Latitude of the Start Station
+start_lng - Longitude of the Start Station
+end_lat - Latitude of the End Station
+end_lng - Longitude of the End Station
+member_casual - Field with Two Values Indicating Whether the Rider has a Divvy Membership or Paid with Credit Card
+
+
+
