@@ -17,6 +17,9 @@ While this data is freely available from the City of Chicago it is divided by mo
 ---
 The data to be used for this project can be found here - [Divvy Bike Data](https://divvy-tripdata.s3.amazonaws.com/index.html)
 
+Below is a sample of the data to be used:
+![alt text](../images/DataSample-FinalProject.png)
+
 # Technologies to be Used:
 ---
 - GCP VM Instance (Processing)
