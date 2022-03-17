@@ -15,7 +15,7 @@ While this data is freely available from the City of Chicago it is divided by mo
 
 # Data:
 ---
-[Divvy Bike Data](https://divvy-tripdata.s3.amazonaws.com/index.html)
+The data to be used for this project can be found here - [Divvy Bike Data](https://divvy-tripdata.s3.amazonaws.com/index.html)
 
 # Technologies to be Used:
 ---
