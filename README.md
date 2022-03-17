@@ -43,7 +43,7 @@ end_lat - Latitude of the End Station<br>
 end_lng - Longitude of the End Station<br>
 member_casual - Field with Two Values Indicating Whether the Rider has a Divvy Membership or Paid with Credit Card<br>
 
-#Data Pipeline Diagram:
+# Data Pipeline Diagram:
 ---
 TODO
 
