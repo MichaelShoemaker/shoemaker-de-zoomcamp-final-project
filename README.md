@@ -29,19 +29,19 @@ The data to be used for this project can be found here - [Divvy Bike Data](https
 Below is a sample of the data to be used:
 ![Screenshot](/images/DataSample-FinalProject.png)
 
-ride_id - Unique ID Assigned to Each Divvy Trip
-rideable_type - Type of Vehicle Used
-started_at - Start of Trip Date and Time
-ended_at - End of Trip Date and Time
-start_station_name - Name Assigned to Station the Trip Started at
-start_station_id - Unique Identification Number of Station the Trip Started at
-end_station_name - Name Assigned to Station the Trip Ended at
-end_station_id - Unique Identification Number of Station the Trip Ended at
-start_lat - Latitude of the Start Station
-start_lng - Longitude of the Start Station
-end_lat - Latitude of the End Station
-end_lng - Longitude of the End Station
-member_casual - Field with Two Values Indicating Whether the Rider has a Divvy Membership or Paid with Credit Card
+ride_id - Unique ID Assigned to Each Divvy Trip<br>
+rideable_type - Type of Vehicle Used<br>
+started_at - Start of Trip Date and Time<br>
+ended_at - End of Trip Date and Time<br>
+start_station_name - Name Assigned to Station the Trip Started at<br>
+start_station_id - Unique Identification Number of Station the Trip Started at<br>
+end_station_name - Name Assigned to Station the Trip Ended at<br>
+end_station_id - Unique Identification Number of Station the Trip Ended at<br>
+start_lat - Latitude of the Start Station<br>
+start_lng - Longitude of the Start Station<br>
+end_lat - Latitude of the End Station<br>
+end_lng - Longitude of the End Station<br>
+member_casual - Field with Two Values Indicating Whether the Rider has a Divvy Membership or Paid with Credit Card<br>
 
 
 
