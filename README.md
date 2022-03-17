@@ -13,6 +13,10 @@ While this data is freely available from the City of Chicago it is divided by mo
 - By combining this data there may be trends that can be identified which may otherwise be missed looking at a smaller subset of the data. 
 - Creating a resilient data pipeline to facilitate the importing and aggregation of the data this project should be of utility for someone who wishes to perform the same task while eliminating the need for repetitive data cleaning and importing.
 
+# Data:
+---
+[Divvy Bike Data](https://divvy-tripdata.s3.amazonaws.com/index.html)
+
 # Technologies to be Used:
 ---
 - GCP VM Instance (Processing)
