@@ -10,6 +10,9 @@ from airflow.operators.python import PythonOperator
 
 from google.cloud import storage
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryDeleteTableOperator
+
+
 
 import pandas as pd
 import pyarrow as pa
@@ -20,14 +23,13 @@ PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
 
 #https://divvy-tripdata.s3.amazonaws.com/202202-divvy-tripdata.zip
-# year = '{:04d}'.format(datetime.now().year)
-# month ='{:02d}'.format(datetime.now().month-1)
+
 dataset_zip = "{{ execution_date.strftime(\'%Y%m\') }}-divvy-tripdata.zip"
 csv_file = "{{ execution_date.strftime(\'%Y%m\') }}-divvy-tripdata.csv"
 dataset_url = f"https://divvy-tripdata.s3.amazonaws.com/{dataset_zip}"
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 parquet_file = csv_file.replace('.csv', '.parquet')
-BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'divvy_trips')
+BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'divvy_trips_data')
 
 
 def format_to_parquet(src_file):
@@ -108,31 +110,36 @@ with DAG(
         bash_command = 'cd /opt/airflow && rm *.zip *.csv && rm -rf __MACOS*'
     )
 
-    # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
-    # local_to_gcs_task = PythonOperator(
-    #     task_id="local_to_gcs_task",
-    #     python_callable=upload_to_gcs,
-    #     op_kwargs={
-    #         "bucket": BUCKET,
-    #         "object_name": f"raw/{parquet_file}",
-    #         "local_file": f"{path_to_local_home}/{parquet_file}",
-    #     },
-    # )
+    local_to_gcs_task = PythonOperator(
+        task_id="local_to_gcs_task",
+        python_callable=upload_to_gcs,
+        op_kwargs={
+            "bucket": BUCKET,
+            "object_name": f"raw/{parquet_file}",
+            "local_file": f"{path_to_local_home}/{parquet_file}",
+        },
+    )
+    
+    delete_table = BigQueryDeleteTableOperator(
+        task_id="delete_table",
+        deletion_dataset_table=f"{PROJECT_ID}.{BIGQUERY_DATASET}.external_table",
+    )
 
-    # bigquery_external_table_task = BigQueryCreateExternalTableOperator(
-    #     task_id="bigquery_external_table_task",
-    #     table_resource={
-    #         "tableReference": {
-    #             "projectId": PROJECT_ID,
-    #             "datasetId": BIGQUERY_DATASET,
-    #             "tableId": "external_table",
-    #         },
-    #         "externalDataConfiguration": {
-    #             "sourceFormat": "PARQUET",
-    #             "sourceUris": [f"gs://{BUCKET}/raw/{parquet_file}"],
-    #         },
-    #     },
-    # )
 
-    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files
-    # >> local_to_gcs_task >> bigquery_external_table_task
+    bigquery_external_table_task = BigQueryCreateExternalTableOperator(
+        task_id="bigquery_external_table_task",
+        table_resource={
+            "tableReference": {
+                "projectId": PROJECT_ID,
+                "datasetId": BIGQUERY_DATASET,
+                "tableId": "external_table",
+            },
+            "externalDataConfiguration": {
+                "sourceFormat": "PARQUET",
+                "sourceUris": [f"gs://{BUCKET}/raw/*.parquet"],
+            },
+        },
+    )
+
+    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files >> local_to_gcs_task >> delete_table >> bigquery_external_table_task
+
