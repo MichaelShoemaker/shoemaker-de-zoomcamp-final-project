@@ -31,7 +31,8 @@ RUN DOWNLOAD_URL="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/goo
        --usage-reporting=false \
        --quiet \
     && rm -rf "${TMP_DIR}" \
-    && gcloud --version
+    && gcloud --version 
+
 
 WORKDIR $AIRFLOW_HOME
 

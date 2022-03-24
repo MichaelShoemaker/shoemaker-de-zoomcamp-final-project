@@ -72,7 +72,7 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 default_args = {
     "owner": "airflow",
-    "depends_on_past": True,
+    "depends_on_past": False,
     "retries": 1,
 }
 
@@ -143,6 +143,6 @@ with DAG(
     #     },
     # )
 
+
     download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files >> local_to_gcs_task 
     # >> delete_table >> bigquery_external_table_task
-

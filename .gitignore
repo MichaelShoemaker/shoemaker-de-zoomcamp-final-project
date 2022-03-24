@@ -2,5 +2,7 @@
 *.parquet
 *.zip
 *__pycache__
+/logs*
+logs*
 *logs/*
 .ipynb_checkpoints*
