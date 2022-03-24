@@ -122,26 +122,27 @@ with DAG(
         },
     )
     
-    delete_table = BigQueryDeleteTableOperator(
-        task_id="delete_table",
-        deletion_dataset_table=f"{PROJECT_ID}.{BIGQUERY_DATASET}.external_table",
-    )
+    # delete_table = BigQueryDeleteTableOperator(
+    #     task_id="delete_table",
+    #     deletion_dataset_table=f"{PROJECT_ID}.{BIGQUERY_DATASET}.external_table",
+    # )
 
 
-    bigquery_external_table_task = BigQueryCreateExternalTableOperator(
-        task_id="bigquery_external_table_task",
-        table_resource={
-            "tableReference": {
-                "projectId": PROJECT_ID,
-                "datasetId": BIGQUERY_DATASET,
-                "tableId": "external_table",
-            },
-            "externalDataConfiguration": {
-                "sourceFormat": "PARQUET",
-                "sourceUris": [f"gs://{BUCKET}/raw/*.parquet"],
-            },
-        },
-    )
+    # bigquery_external_table_task = BigQueryCreateExternalTableOperator(
+    #     task_id="bigquery_external_table_task",
+    #     table_resource={
+    #         "tableReference": {
+    #             "projectId": PROJECT_ID,
+    #             "datasetId": BIGQUERY_DATASET,
+    #             "tableId": "external_table",
+    #         },
+    #         "externalDataConfiguration": {
+    #             "sourceFormat": "PARQUET",
+    #             "sourceUris": [f"gs://{BUCKET}/raw/*.parquet"],
+    #         },
+    #     },
+    # )
 
-    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files >> local_to_gcs_task >> delete_table >> bigquery_external_table_task
+    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files >> local_to_gcs_task 
+    # >> delete_table >> bigquery_external_table_task
 
