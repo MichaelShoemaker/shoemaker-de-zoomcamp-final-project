@@ -10,6 +10,9 @@ from airflow.operators.python import PythonOperator
 
 from google.cloud import storage
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryDeleteTableOperator
+
+
 
 import pandas as pd
 import pyarrow as pa
@@ -20,21 +23,13 @@ PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
 
 #https://divvy-tripdata.s3.amazonaws.com/202202-divvy-tripdata.zip
-<<<<<<< HEAD
-year = '{:04d}'.format(datetime.now().year)
-month ='{:02d}'.format(datetime.now().month-1)
-dataset_zip = year+month +'-divvy-tripdata.zip'
-csv_file = year+month +'-divvy-tripdata.csv'
-=======
-# year = '{:04d}'.format(datetime.now().year)
-# month ='{:02d}'.format(datetime.now().month-1)
+
 dataset_zip = "{{ execution_date.strftime(\'%Y%m\') }}-divvy-tripdata.zip"
 csv_file = "{{ execution_date.strftime(\'%Y%m\') }}-divvy-tripdata.csv"
->>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
 dataset_url = f"https://divvy-tripdata.s3.amazonaws.com/{dataset_zip}"
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 parquet_file = csv_file.replace('.csv', '.parquet')
-BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'divvy_trips')
+BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'divvy_trips_data')
 
 
 def format_to_parquet(src_file):
@@ -44,6 +39,8 @@ def format_to_parquet(src_file):
     df = pd.read_csv(src_file)
     df.started_at = pd.to_datetime(df.started_at)
     df.ended_at = pd.to_datetime(df.ended_at)
+    df.start_station_id = df.start_station_id.astype(str)
+    df.end_station_id = df.end_station_id.astype(str)
 
     table = pa.Table.from_pandas(df)
     pq.write_table(table, 'file_name.parquet')
@@ -75,11 +72,7 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 default_args = {
     "owner": "airflow",
-<<<<<<< HEAD
     "depends_on_past": False,
-=======
-    "depends_on_past": True,
->>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
     "retries": 1,
 }
 
@@ -101,11 +94,7 @@ with DAG(
 
     unzip_data_file = BashOperator(
         task_id = "unzip_data_file",
-<<<<<<< HEAD
-        bash_command = f"unzip {dataset_zip} && trash {dataset_zip}"
-=======
         bash_command = f"cd /opt/airflow && unzip {path_to_local_home}/{dataset_zip}"
->>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
     )
 
 
@@ -117,35 +106,27 @@ with DAG(
         },
     )
 
-<<<<<<< HEAD
-    # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
-    # local_to_gcs_task = PythonOperator(
-    #     task_id="local_to_gcs_task",
-    #     python_callable=upload_to_gcs,
-    #     op_kwargs={
-    #         "bucket": BUCKET,
-    #         "object_name": f"raw/{parquet_file}",
-    #         "local_file": f"{path_to_local_home}/{parquet_file}",
-    #     },
-    # )
-=======
 
     clean_up_files = BashOperator(
         task_id = "clean_up_files",
         bash_command = 'cd /opt/airflow && rm *.zip *.csv && rm -rf __MACOS*'
     )
->>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
 
-    # TODO: Homework - research and try XCOM to communicate output values between 2 tasks/operators
-    # local_to_gcs_task = PythonOperator(
-    #     task_id="local_to_gcs_task",
-    #     python_callable=upload_to_gcs,
-    #     op_kwargs={
-    #         "bucket": BUCKET,
-    #         "object_name": f"raw/{parquet_file}",
-    #         "local_file": f"{path_to_local_home}/{parquet_file}",
-    #     },
+    local_to_gcs_task = PythonOperator(
+        task_id="local_to_gcs_task",
+        python_callable=upload_to_gcs,
+        op_kwargs={
+            "bucket": BUCKET,
+            "object_name": f"raw/{parquet_file}",
+            "local_file": f"{path_to_local_home}/{parquet_file}",
+        },
+    )
+    
+    # delete_table = BigQueryDeleteTableOperator(
+    #     task_id="delete_table",
+    #     deletion_dataset_table=f"{PROJECT_ID}.{BIGQUERY_DATASET}.external_table",
     # )
+
 
     # bigquery_external_table_task = BigQueryCreateExternalTableOperator(
     #     task_id="bigquery_external_table_task",
@@ -157,14 +138,11 @@ with DAG(
     #         },
     #         "externalDataConfiguration": {
     #             "sourceFormat": "PARQUET",
-    #             "sourceUris": [f"gs://{BUCKET}/raw/{parquet_file}"],
+    #             "sourceUris": [f"gs://{BUCKET}/raw/*.parquet"],
     #         },
     #     },
     # )
 
-<<<<<<< HEAD
-    download_dataset_task >> unzip_data_file >> format_to_parquet_task 
-=======
-    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files
->>>>>>> 32ab1e9184542627b3b6e3675fb1888e125d684a
-    # >> local_to_gcs_task >> bigquery_external_table_task
+
+    download_dataset_task >> unzip_data_file >> format_to_parquet_task >> clean_up_files >> local_to_gcs_task 
+    # >> delete_table >> bigquery_external_table_task
