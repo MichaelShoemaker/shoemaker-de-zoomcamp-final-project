@@ -39,6 +39,8 @@ def format_to_parquet(src_file):
     df = pd.read_csv(src_file)
     df.started_at = pd.to_datetime(df.started_at)
     df.ended_at = pd.to_datetime(df.ended_at)
+    df.start_station_id = df.start_station_id.astype(str)
+    df.end_station_id = df.end_station_id.astype(str)
 
     table = pa.Table.from_pandas(df)
     pq.write_table(table, 'file_name.parquet')
