@@ -121,13 +121,13 @@ with DAG(
             "local_file": f"{path_to_local_home}/{parquet_file}",
         },
     )
-    
+    #This didn't work, but I'm leaving it here so I can come back to it later
     # delete_table = BigQueryDeleteTableOperator(
     #     task_id="delete_table",
     #     deletion_dataset_table=f"{PROJECT_ID}.{BIGQUERY_DATASET}.external_table",
     # )
 
-
+ 
     # bigquery_external_table_task = BigQueryCreateExternalTableOperator(
     #     task_id="bigquery_external_table_task",
     #     table_resource={
