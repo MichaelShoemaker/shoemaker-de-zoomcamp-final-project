@@ -98,7 +98,7 @@ Install docker with<br>
 ```sudo apt install docker.io```
 
 Clone this repo<br>
-
+```git clone https://github.com/MichaelShoemaker/shoemaker-de-zoomcamp-final-project.git```
   
 Make a bin directory with and switch to it<br>
 ```
@@ -107,7 +107,7 @@ cd bin
 ```
   
 Download docker-compose
-
+``` wget https://github.com/docker/compose/releases/download/v2.3.4/docker-compose-linux-x86_64 ```
 
 
 
