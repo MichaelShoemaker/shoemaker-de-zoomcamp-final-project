@@ -56,3 +56,6 @@ Data Visualizations for this project ccan be found here. https://datastudio.goog
 A video walkthrough of the finished project
 - [Video: Walk Through of Final Project](https://www.youtube.com/watch?v=DOwDs_c9RkE)
 
+# Reproduce (Test it yourself)
+---
+Follow the instructions here. 
