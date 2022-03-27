@@ -25,6 +25,7 @@ Scroll down to the Boot disk section and click the Change button.
 ![ChangeBootDisk](https://user-images.githubusercontent.com/7443591/160304137-b76e369c-6718-4567-be4c-4f2f685adbd7.png)<br>
 
 Select the options shown here and click Select
+
 ![ChangeOS](https://user-images.githubusercontent.com/7443591/160304150-d4e7ea43-8ab5-4a9f-ad5f-87bb2aa9f2c1.png)<br>
 
 Scroll down to the bottom and click Create. 
