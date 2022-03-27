@@ -113,7 +113,11 @@ Make it execuatable<br>
 ```chmod +x docker-compose```
   
 
-  
+Add docker-compose to path in your .bashrc file<br>
+
+![modbashrc](https://user-images.githubusercontent.com/7443591/160306744-c50d5324-e523-4709-921e-2be484cf0f0e.png)
+
+![AddComposeToPath](https://user-images.githubusercontent.com/7443591/160306747-08b16b41-a22d-41d7-b704-258770a3fc20.png)
 
 
 
