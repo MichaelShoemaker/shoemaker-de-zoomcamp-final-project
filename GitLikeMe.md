@@ -72,8 +72,11 @@ Install Visual Studio Code if you don't have it already. Search Extensions for S
   
   
 Then in the lower left hand corner click the green icon to Open a Remote Window.
-![OpenARemoteWindow](https://user-images.githubusercontent.com/7443591/160305450-248908f1-0fb0-424d-87b6-c0ac7107bad6.png)
+![OpenARemoteWindow](https://user-images.githubusercontent.com/7443591/160305492-d771aee3-3c50-4790-b9e1-e9f0a89109ad.png)<br>
+  
 
+Then at the top choose Connect to Host and choose the name you gave the VM in the config file. Just click continue if it prompts you.
+![ConnectToHost](https://user-images.githubusercontent.com/7443591/160305604-eeef8024-b846-46f9-8cd0-ee4eb394d9be.png)
 
 
 
