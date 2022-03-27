@@ -50,3 +50,7 @@ member_casual - Field with Two Values Indicating Whether the Rider has a Divvy M
 # Data Visualizations
 ---
 Data Visualizations for this project ccan be found here. https://datastudio.google.com/reporting/ea3f603a-f8f5-4d0c-9664-7608835b8ddb
+
+# Walkthrough
+---
+![Walkthrough Video](https://www.youtube.com/watch?v=DOwDs_c9RkE)
