@@ -76,7 +76,21 @@ Then in the lower left hand corner click the green icon to Open a Remote Window.
   
 
 Then at the top choose Connect to Host and choose the name you gave the VM in the config file. Just click continue if it prompts you.
-![ConnectToHost](https://user-images.githubusercontent.com/7443591/160305604-eeef8024-b846-46f9-8cd0-ee4eb394d9be.png)
+![ConnectToHost](https://user-images.githubusercontent.com/7443591/160305604-eeef8024-b846-46f9-8cd0-ee4eb394d9be.png)<br>
+  
+  
+Press Ctrl + ` <the key by the number 1 on your key > to open a terminal window.
+![OpenATerminal](https://user-images.githubusercontent.com/7443591/160305803-82c447a5-ec61-4525-8107-31a4560536cb.png)<br>
+  
+Download the latest version of Anaconda with wget.
+![WgetAnaconda](https://user-images.githubusercontent.com/7443591/160305821-c3fd292d-8d90-40d6-b965-71f2a85134d5.png)<br>
+  
+Make the download an executable and run it.
+![InstallAnaconda](https://user-images.githubusercontent.com/7443591/160305843-927d47d9-41b7-4e99-82fa-cb22022113cf.png)<br>
+  
+Just hold down enter through the terms of service until it prompts you to type yes.
+![YesToInstallAnaconda](https://user-images.githubusercontent.com/7443591/160305850-f228525f-1558-427d-a197-755aef8a70c9.png)
+
 
 
 
