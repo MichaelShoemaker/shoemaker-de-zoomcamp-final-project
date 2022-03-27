@@ -106,8 +106,15 @@ mkdir bin
 cd bin
 ```
   
-Download docker-compose
-``` wget https://github.com/docker/compose/releases/download/v2.3.4/docker-compose-linux-x86_64 ```
+Download docker-compose<br>
+``` wget https://github.com/docker/compose/releases/download/v2.3.4/docker-compose-linux-x86_64 -O docker-compose```
+  
+Make it execuatable<br>
+```chmod +x docker-compose```
+  
+
+  
+
 
 
 
