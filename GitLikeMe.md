@@ -91,6 +91,22 @@ Make the download an executable and run it.
 Just hold down enter through the terms of service until it prompts you to type yes.
 ![YesToInstallAnaconda](https://user-images.githubusercontent.com/7443591/160305850-f228525f-1558-427d-a197-755aef8a70c9.png)
 
+First update with<br>
+```sudo apt-get update```
+  
+Install docker with<br>
+```sudo apt install docker.io```
+
+Clone this repo<br>
+
+  
+Make a bin directory with and switch to it<br>
+```
+mkdir bin
+cd bin
+```
+  
+Download docker-compose
 
 
 
