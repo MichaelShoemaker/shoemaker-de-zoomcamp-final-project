@@ -52,7 +52,8 @@ Paste the public key you copied into the blank provided and then click save.
 ![SSH_PasteAndSave](https://user-images.githubusercontent.com/7443591/160304842-5f4a2d15-51fc-48e3-92dc-1ae49b8ec3c2.png)
 
 Go to the VM, check the check box and press start. Copy the Public IP address that is displayed once it starts. You can then create a config file in your .ssh directory and add the following entry:<br>
-```Host de-zoomcamp
+```
+  Host de-zoomcamp
     HostName <public IP address>
     User <User name you chose when running the ssh-keygen command>
     IdentityFile /home/<local user name>/.ssh/<your private key>
