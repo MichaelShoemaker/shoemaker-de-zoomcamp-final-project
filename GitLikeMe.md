@@ -10,5 +10,8 @@ Once the new project has been created click the project drop down again and swit
 Click the hamburger icon in the top left and scroll down to Compute Engine. Choose VM instances.
 ![SelectComputeEngine](https://user-images.githubusercontent.com/7443591/160303984-5d5d2f1a-5375-446c-b3de-162c10f59b16.png)
 
-Click to 
+Click to Enable for the Compute Engine API. This will take a few moments.
 ![EnableCloudComputeAPI](https://user-images.githubusercontent.com/7443591/160304015-1359de1b-d1f5-45cf-b1af-29f50c365e44.png)
+
+Once it has finished you can now 
+![CreateInstance](https://user-images.githubusercontent.com/7443591/160304046-1b12ad3a-f0e4-4a81-ab03-2478ab03c3ec.png)
