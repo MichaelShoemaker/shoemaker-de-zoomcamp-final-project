@@ -55,7 +55,8 @@ Go to the VM, check the check box and press start. Copy the Public IP address th
 ```Host de-zoomcamp
     HostName <public IP address>
     User <User name you chose when running the ssh-keygen command>
-    IdentityFile /home/<local user name>/.ssh/<your private key>```
+    IdentityFile /home/<local user name>/.ssh/<your private key>
+```
 
 
 
