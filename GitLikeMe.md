@@ -34,5 +34,11 @@ Scroll down to the bottom and click Create.
 
 # Set up SSH to VM
 ---
-In your terminal run the command 
+In your terminal run the command<br>
 ```ssh-keygen -t -rsa -f ~/.ssh/<whatever you want to call your key> -C <the username that you want on your VM> -b 2048```
+ex:
+```ssh-keygen -t -rsa -f ~/.ssh/gcp -C john -b 2048```
+
+Once the command runs succesfully cd to the .ssh directory. Cat the contents of the <whatever you called your key>.pub. Copy the output to your clipboard.
+  
+
