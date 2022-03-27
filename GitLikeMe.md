@@ -53,7 +53,8 @@ Paste the public key you copied into the blank provided and then click save.
 
 Go to the VM, check the check box and press start if it's not already running. Copy the External IP address that is displayed once it starts. You can then create a config file in your .ssh directory and add the following entry:<br>
 
-![SSH_PasteAndSave](https://user-images.githubusercontent.com/7443591/160305304-d9df15be-f30c-4a85-a692-9716fcbfa3f5.png)
+
+![StartVMExternalIP](https://user-images.githubusercontent.com/7443591/160305325-562a85f4-a079-424a-99d9-2f716cb7ca41.png)
 
   
 ```
