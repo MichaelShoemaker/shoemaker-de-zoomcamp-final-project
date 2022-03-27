@@ -36,9 +36,21 @@ Scroll down to the bottom and click Create.
 ---
 In your terminal run the command<br>
 ```ssh-keygen -t -rsa -f ~/.ssh/<whatever you want to call your key> -C <the username that you want on your VM> -b 2048```
+<br>
 ex:
 ```ssh-keygen -t -rsa -f ~/.ssh/gcp -C john -b 2048```
 
 Once the command runs succesfully cd to the .ssh directory. Cat the contents of the <whatever you called your key>.pub. Copy the output to your clipboard.
+
+In GCP click the hamburger icon again and scroll down to select Metadata
+![Metadata](https://user-images.githubusercontent.com/7443591/160304715-63365049-f62c-4ad0-beef-48571a2abfb5.png)<br>
   
+Select SSH Key and then click ADD SSH KEY.
+![SelectAddSSHKey](https://user-images.githubusercontent.com/7443591/160304738-c1859228-b734-49eb-a68c-a0c7b1fd21b5.png)<br>
+  
+Paste the public key you copied into the blank provided and then click save.
+![SSH_PasteAndSave](https://user-images.githubusercontent.com/7443591/160304842-5f4a2d15-51fc-48e3-92dc-1ae49b8ec3c2.png)
+
+
+
 
