@@ -66,7 +66,15 @@ Go to the VM, check the check box and press start if it's not already running. C
 
 # Connecting and setting up
 ---
+Install Visual Studio Code if you don't have it already. Search Extensions for SSH and install Remote-SSH from Microsoft.
   
+![InstallSSHExtension](https://user-images.githubusercontent.com/7443591/160305404-99508aa5-82fd-46a1-9e09-c1061a5f378d.png)<br>
+  
+  
+Then in the lower left hand corner click the green icon to Open a Remote Window.
+![OpenARemoteWindow](https://user-images.githubusercontent.com/7443591/160305450-248908f1-0fb0-424d-87b6-c0ac7107bad6.png)
+
+
 
 
 
