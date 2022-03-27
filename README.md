@@ -45,7 +45,7 @@ member_casual - Field with Two Values Indicating Whether the Rider has a Divvy M
 
 # Data Pipeline Diagram:
 ---
-TODO
+![Screenshot](/images/ProjectDataDiagram.jpeg)
 
 # Data Visualizations
 ---
