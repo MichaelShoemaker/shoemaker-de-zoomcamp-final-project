@@ -32,4 +32,7 @@ Scroll down to the bottom and click Create.
 ![CreateOSButton](https://user-images.githubusercontent.com/7443591/160304196-94dc834c-0d76-493e-8011-b6d5c190c4d5.png)<br>
 
 
-
+# Set up SSH to VM
+---
+In your terminal run the command 
+```ssh-keygen -t -rsa -f ~/.ssh/<whatever you want to call your key> -C <the username that you want on your VM> -b 2048```
