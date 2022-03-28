@@ -169,12 +169,17 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update && sudo apt-get install terraform
 ```
-Go to shoemaker-de-zoomcamp-final-project/terraform directory. There is one thing you must update and two you probably want to.
-The project name you MUST change to match your project name
-The Region is okay if you are in the US, but make sure you choose a region that is Multi
-The data_lake_bucket name. This will be the name of the bucket that will store our files
-The BQ_DATASET Default will be the name of your dataset in Big Query
-![ChangeTerraform](https://user-images.githubusercontent.com/7443591/160309612-77a3eb67-474b-41ab-a7c9-618ff574953c.png)
-  
+Go to shoemaker-de-zoomcamp-final-project/terraform directory. There is one thing you must update and two you probably want to.<br>
+The project name you MUST change to match your project name<br>
+The Region is okay if you are in the US, but make sure you choose a region that is Multi<br>
+The data_lake_bucket name. This will be the name of the bucket that will store our files<br>
+The BQ_DATASET Default will be the name of your dataset in Big Query<br>
+![ChangeTerraform](https://user-images.githubusercontent.com/7443591/160309612-77a3eb67-474b-41ab-a7c9-618ff574953c.png)<br>
+
+Run the commands<br>
+```
+terraform init
+terraform apply
+```
 When it prompts you just type "yes"
 
