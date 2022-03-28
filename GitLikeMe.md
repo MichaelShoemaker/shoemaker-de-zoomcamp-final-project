@@ -201,7 +201,10 @@ mkdir -p .google/credentials
 sudo cp .gc/reproduce-de-project-c7d579a009f9.json .google/credentials/google_credentials.json
 ```
 Go back to shoemaker-de-zoomcamp-final-project and run<br>
-docker-compose up
+```
+docker-compose build
+docker-compose up airflow-init
+```
   
 This will take a while the first time. You might want to grab a cup of coffee or lunch. 
   
