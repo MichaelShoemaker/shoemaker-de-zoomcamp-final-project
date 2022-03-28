@@ -59,7 +59,7 @@ Click create and it will download the .json key to your computer<br>
 ![CreateKey](https://user-images.githubusercontent.com/7443591/160307568-b6bfcb42-d053-432a-8982-374c9b23f1da.png)<br>
 
 
-# Set up SSH to VM
+# Setup SSH to VM
 ---
 In your terminal run the command<br>
 ```ssh-keygen -t -rsa -f ~/.ssh/<whatever you want to call your key> -C <the username that you want on your VM> -b 2048```
@@ -149,5 +149,10 @@ Add docker-compose to path in your .bashrc file<br>
 Update your path by running<br>
 ```source .bashrc```
 
+Load your .json file for your service account. It is most likely in your Downloads directory. Cd to Downloads, ssh to your vm, run sftp and then run
+```put <you file>.json```
+  
+Exit sftp, ssh back to your VM, make a directory called .gc in your home directory and move the file there<br>
+![UploadMoveJsonFile](https://user-images.githubusercontent.com/7443591/160308143-90c21058-a50b-44f8-98e4-e2f1e9766ce0.png)
 
 
