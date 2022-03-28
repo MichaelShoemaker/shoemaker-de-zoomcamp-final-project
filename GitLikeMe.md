@@ -159,3 +159,13 @@ You should also add the following to your .bashrc file<br>
 export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/<your json file><br>
 and then run<br>
 ```source .bashrc```
+  
+Now authenticate by running<br>
+gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS<br>
+  
+Install terrraform by running these commands<br>
+```
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
+```
