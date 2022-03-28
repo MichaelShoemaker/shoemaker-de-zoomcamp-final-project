@@ -183,3 +183,13 @@ terraform apply
 ```
 When it prompts you just type "yes"
 
+# Running Airflow
+
+Run:
+docker: Got permission denied while trying to connect to the Docker daemon socket a
+sudo usermod -aG docker $USER
+newgrp docker
+
+Ctrl + d to exit your ssh session
+log back in and run
+cd to shoemaker-DE-final-project
