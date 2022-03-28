@@ -174,5 +174,7 @@ The project name you MUST change to match your project name
 The Region is okay if you are in the US, but make sure you choose a region that is Multi
 The data_lake_bucket name. This will be the name of the bucket that will store our files
 The BQ_DATASET Default will be the name of your dataset in Big Query
-![ChangeTerraform](https://user-images.githubusercontent.com/7443591/160309248-4eb0bcfb-ddd3-472c-911b-3a805aaea172.png)
+![ChangeTerraform](https://user-images.githubusercontent.com/7443591/160309612-77a3eb67-474b-41ab-a7c9-618ff574953c.png)
+  
+When it prompts you just type "yes"
 
