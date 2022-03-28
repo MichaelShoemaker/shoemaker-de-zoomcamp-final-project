@@ -219,6 +219,10 @@ and login with airflow airflow for the credentials<br>
 Enable the dag and you should see it run. It takes 10-15 minutres to run all of the run. After it has completed you should see the partquet files in your GCP Bucket.
  ![DagRunning](https://user-images.githubusercontent.com/7443591/160413468-d5f236a2-0a72-46b5-bab0-605196e3efd4.png)
  
+  
+  ![ParquetBucket](https://user-images.githubusercontent.com/7443591/160413881-5252646a-2b2c-4a05-8d8e-ce2ba8bcd52d.png)
+
+  
 
 # Big Query Table Creation
 Once Airflow has created all of your files in your storage bucket go to Big Query and run<br>
