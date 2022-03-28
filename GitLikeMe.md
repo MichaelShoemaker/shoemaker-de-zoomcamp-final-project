@@ -193,3 +193,16 @@ newgrp docker
 Ctrl + d to exit your ssh session
 log back in and run
 cd to shoemaker-DE-final-project
+
+then run
+  
+docker-compose up
+  
+in Visual Studio code click on ports and forward port 8080
+  
+go to localhost:8080
+and login with airflow airflow
+  
+Enable the dag and you should see it run.
+  
+
