@@ -205,4 +205,26 @@ and login with airflow airflow
   
 Enable the dag and you should see it run.
   
+# Big Query Table Creation
+Once Airflow has created all of your files in your storage bucket go to Big Query and run<br>
+  
+```
+  CREATE OR REPLACE EXTERNAL TABLE <your project>.<your dataset>.external_divvy_data
+options(
+    format = 'parquet',
+    uris = ['<path to your storage bucket>/raw/*.parquet']
+)
+```
 
+Then create your partitioned table with<br>
+```
+CREATE OR REPLACE TABLE  `<your project>.<your dataset>.divvy_data_partitioned` 
+PARTITION BY
+    DATE(started_at) 
+CLUSTER BY start_station_name
+    AS 
+SELECT * FROM `<your project>.<your dataset>.external_divvy_data` 
+  
+# Transform data with DBT
+You can create a new project in dbt. Fork this repo and then use it in dbt.
+  
