@@ -58,4 +58,4 @@ A video walkthrough of the finished project
 
 # Reproduce (Test it yourself)
 ---
-Follow the instructions here. 
+Follow the instructions [here](https://github.com/MichaelShoemaker/shoemaker-de-zoomcamp-final-project/blob/main/GitLikeMe.md)
