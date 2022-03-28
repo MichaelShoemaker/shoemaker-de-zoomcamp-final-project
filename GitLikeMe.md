@@ -186,17 +186,24 @@ When it prompts you just type "yes"
 # Running Airflow
 
 Run:
-docker: Got permission denied while trying to connect to the Docker daemon socket a
-sudo usermod -aG docker $USER
-newgrp docker
+sudo usermod -aG docker $USER<br>
+newgrp docker<br>
 
-Ctrl + d to exit your ssh session
-log back in and run
-cd to shoemaker-DE-final-project
+Ctrl + d to exit your ssh session<br>
+log back<br>
+Go to shoemaker-de-zoomcamp-final-project and update the values shown below in the docker-compose file to match your environment<br>
+![ChangeDockerComposeVariables](https://user-images.githubusercontent.com/7443591/160399379-4d6c63ae-35f3-4abb-9a75-cc07beb22700.png)
 
-then run
-pip install -r requirements.txt
+Also run the below command to copy your credentials to where docker-compose can use them.
+In your home directory run:<br>
+```
+mkdir -p .google/credentials
+sudo cp .gc/reproduce-de-project-c7d579a009f9.json .google/credentials/google_credentials.json
+```
+Go back to shoemaker-de-zoomcamp-final-project and run<br>
 docker-compose up
+  
+This will take a while the first time. You might want to grab a cup of coffee or lunch. 
   
 in Visual Studio code click on ports and forward port 8080
   
