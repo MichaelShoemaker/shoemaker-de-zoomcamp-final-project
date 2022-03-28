@@ -226,5 +226,5 @@ CLUSTER BY start_station_name
 SELECT * FROM `<your project>.<your dataset>.external_divvy_data` 
   
 # Transform data with DBT
-You can create a new project in dbt. Fork this repo and then use it in dbt.
+You can create a new project in dbt. Fork this repo https://github.com/MichaelShoemaker/final_project_dbt and then use it in dbt.
   
