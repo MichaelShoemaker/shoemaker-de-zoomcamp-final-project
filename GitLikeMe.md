@@ -206,14 +206,14 @@ docker-compose build
 docker-compose up airflow-init
 ```
   
-This will take a while the first time. You might want to grab a cup of coffee or lunch. 
+This will take a while the first time. You might want to grab a cup of coffee or lunch.<br> 
   
-in Visual Studio code click on ports and forward port 8080
+in Visual Studio code click on ports and forward port 8080<br>
   
-go to localhost:8080
-and login with airflow airflow
+go to localhost:8080<br>
+and login with airflow airflow for the credentials<br>
   
-Enable the dag and you should see it run.
+Enable the dag and you should see it run. It takes 10-15 minutres to run all of the run. After it has completed you should see the partquet files in your GCP Bucket.
   
 # Big Query Table Creation
 Once Airflow has created all of your files in your storage bucket go to Big Query and run<br>
