@@ -155,4 +155,7 @@ Load your .json file for your service account. It is most likely in your Downloa
 Exit sftp, ssh back to your VM, make a directory called .gc in your home directory and move the file there<br>
 ![UploadMoveJsonFile](https://user-images.githubusercontent.com/7443591/160308143-90c21058-a50b-44f8-98e4-e2f1e9766ce0.png)
 
-
+You should also add the following to your .bashrc file<br>
+export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/<your json file><br>
+and then run<br>
+```source .bashrc```
