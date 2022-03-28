@@ -212,10 +212,14 @@ in Visual Studio code click on ports and forward port 8080<br>
   ![ForwardPort](https://user-images.githubusercontent.com/7443591/160403735-7c40babc-7d63-4b51-90da-c065e5b254a0.png)
 
 go to localhost:8080<br>
+  
 and login with airflow airflow for the credentials<br>
-  
+![AirflowLogin](https://user-images.githubusercontent.com/7443591/160413081-4f4e606f-09f6-4d4f-9b94-5241f37091a6.png)
+
 Enable the dag and you should see it run. It takes 10-15 minutres to run all of the run. After it has completed you should see the partquet files in your GCP Bucket.
-  
+ ![DagRunning](https://user-images.githubusercontent.com/7443591/160413468-d5f236a2-0a72-46b5-bab0-605196e3efd4.png)
+ 
+
 # Big Query Table Creation
 Once Airflow has created all of your files in your storage bucket go to Big Query and run<br>
   
