@@ -209,7 +209,8 @@ docker-compose up airflow-init
 This will take a while the first time. You might want to grab a cup of coffee or lunch.<br> 
   
 in Visual Studio code click on ports and forward port 8080<br>
-  
+  ![ForwardPort](https://user-images.githubusercontent.com/7443591/160403735-7c40babc-7d63-4b51-90da-c065e5b254a0.png)
+
 go to localhost:8080<br>
 and login with airflow airflow for the credentials<br>
   
@@ -238,3 +239,20 @@ SELECT * FROM `<your project>.<your dataset>.external_divvy_data`
 # Transform data with DBT
 You can create a new project in dbt. Fork this repo https://github.com/MichaelShoemaker/final_project_dbt and then use it in dbt.
   
+# Analytics Reports
+---
+Here are the tiles that were created for this project:
+https://datastudio.google.com/reporting/ea3f603a-f8f5-4d0c-9664-7608835b8ddb/page/0ttoC
+  
+
+See below options for reference to build the reports:
+
+
+  ![TimeSeries](https://user-images.githubusercontent.com/7443591/160406733-270f06b3-5fb8-4cc9-9953-0743a6a545d8.png)<br>
+  
+  ![barGraph](https://user-images.githubusercontent.com/7443591/160406769-8a022861-1b1f-4cd9-b38f-06f480d921b6.png)<br>
+  
+  ![barBreakDown](https://user-images.githubusercontent.com/7443591/160406797-473c3cb4-5b39-4471-bf33-fd99047a3600.png)<br>
+
+
+
