@@ -195,7 +195,7 @@ log back in and run
 cd to shoemaker-DE-final-project
 
 then run
-  
+pip install -r requirements.txt
 docker-compose up
   
 in Visual Studio code click on ports and forward port 8080
