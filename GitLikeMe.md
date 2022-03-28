@@ -119,6 +119,8 @@ Add docker-compose to path in your .bashrc file<br>
 
 ![AddComposeToPath](https://user-images.githubusercontent.com/7443591/160306747-08b16b41-a22d-41d7-b704-258770a3fc20.png)
 
+Update your path by running<br>
+```source .bashrc```
 
 
 
