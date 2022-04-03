@@ -157,6 +157,7 @@ Exit sftp, ssh back to your VM, make a directory called .google/credentials in y
 ```
   mkdir -p .google/credentials/google_credentials.json
   cp <your service account json file>  .google/credentials/google_credentials.json
+```
 
 You should also add the following to your .bashrc file<br>
 export GOOGLE_APPLICATION_CREDENTIALS=~/.google/credentials/google_credentials.json<br>
