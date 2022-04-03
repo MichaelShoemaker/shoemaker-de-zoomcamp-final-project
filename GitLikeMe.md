@@ -155,7 +155,7 @@ Load your .json file for your service account. It is most likely in your Downloa
 Exit sftp, ssh back to your VM, make a directory called .google/credentials in your home directory and move the file there<br>
   
 ```
-  mkdir -p .google/credentials/google_credentials.json
+  mkdir -p .google/credentials
   cp <your service account json file>  .google/credentials/google_credentials.json
 ```
 
