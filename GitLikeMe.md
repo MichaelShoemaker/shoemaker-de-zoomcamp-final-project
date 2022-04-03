@@ -152,11 +152,14 @@ Update your path by running<br>
 Load your .json file for your service account. It is most likely in your Downloads directory. Cd to Downloads, ssh to your vm, run sftp and then run
 ```put <you file>.json```
   
-Exit sftp, ssh back to your VM, make a directory called .gc in your home directory and move the file there<br>
-![UploadMoveJsonFile](https://user-images.githubusercontent.com/7443591/160308143-90c21058-a50b-44f8-98e4-e2f1e9766ce0.png)
+Exit sftp, ssh back to your VM, make a directory called .google/credentials in your home directory and move the file there<br>
+  
+```
+  mkdir -p .google/credentials/google_credentials.json
+  cp <your service account json file>  .google/credentials/google_credentials.json
 
 You should also add the following to your .bashrc file<br>
-export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/<your json file><br>
+export GOOGLE_APPLICATION_CREDENTIALS=~/.google/credentials/google_credentials.json<br>
 and then run<br>
 ```source .bashrc```
   
