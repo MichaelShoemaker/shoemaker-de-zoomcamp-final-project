@@ -3,7 +3,8 @@ locals {
 }
 
 variable "project" {
-  description = "shoemaker-datazoomcamp"
+  description = "Project-ID"
+  default = "shoemaker-datazoomcamp"
 }
 
 variable "region" {
