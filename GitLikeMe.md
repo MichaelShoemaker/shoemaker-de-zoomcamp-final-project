@@ -1,3 +1,5 @@
+NOTE: It may be easier to follow the walkthrough video here. The steps in the video are not executed in the exact same order as those given below, but the steps are the same. 
+
 # Create the VM
 ---
 Start in your GCP Account. At the top click the projects drop down and then select +New Project
