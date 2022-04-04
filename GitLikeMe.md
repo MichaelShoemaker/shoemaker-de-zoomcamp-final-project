@@ -1,4 +1,4 @@
-NOTE: It may be easier to follow the walkthrough video here. The steps in the video are not executed in the exact same order as those given below, but the steps are the same. 
+NOTE: It may be easier to follow the walkthrough - [Video: video here](https://youtu.be/1zRocevm5jg). The steps in the video are not executed in the exact same order as those given below, but the steps are the same. 
 
 # Create the VM
 ---
