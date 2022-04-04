@@ -284,6 +284,20 @@ Click import and then continue<br>
 ![importAndContinue](https://user-images.githubusercontent.com/7443591/161544667-efcfda91-ead6-45ef-a0ae-9b1859efc294.png)
 
 You will get a key you need to place in the repo of the clone dbt project<br>
+![copyssh](https://user-images.githubusercontent.com/7443591/161547482-17fa1699-ef1b-44a5-b1e7-d46418ff4218.png)<br>
+  
+In your forked repo go to Settings and then Deploy Keys<br>
+![settingDeployKey](https://user-images.githubusercontent.com/7443591/161547590-be8ea680-ca73-4253-bc7c-fbe552a4239d.png)<br>
+  
+Call the key whatever you like. Paste the key from dbt and make sure to check the box for write access.<br>
+
+![PasteKey](https://user-images.githubusercontent.com/7443591/161547721-a1605aa6-9741-4ebf-96f8-82ce6860158e.png)<br>
+
+Back in dbt go to models >> staging >> schema.yml and update the data sources to match what is in Big Query<br>
+  
+
+
+  
 
 
 You can create a new project in dbt. Fork this repo https://github.com/MichaelShoemaker/final_project_dbt and then use it in dbt.
