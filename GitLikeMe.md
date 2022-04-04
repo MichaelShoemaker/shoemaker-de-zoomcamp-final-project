@@ -304,8 +304,6 @@ You may also need to go into the stg_stations.sql and other models to update the
 
   
 
-
-You can create a new project in dbt. Fork this repo https://github.com/MichaelShoemaker/final_project_dbt and then use it in dbt.
   
 # Analytics Reports
 ---
@@ -315,13 +313,13 @@ https://datastudio.google.com/reporting/ea3f603a-f8f5-4d0c-9664-7608835b8ddb/pag
 
 See below options on the left below for reference to build the reports:
 
-#TIME SERIES
+## TIME SERIES
   ![TimeSeries](https://user-images.githubusercontent.com/7443591/160406733-270f06b3-5fb8-4cc9-9953-0743a6a545d8.png)<br>
 
-#STATON BAR GRAPH
+## STATON BAR GRAPH
   ![barGraph](https://user-images.githubusercontent.com/7443591/160406769-8a022861-1b1f-4cd9-b38f-06f480d921b6.png)<br>
   
-#USER BREAKDOWN BAR GRAPH RIDE COUNT
+## USER BREAKDOWN BAR GRAPH RIDE COUNT
   ![barBreakDown](https://user-images.githubusercontent.com/7443591/160406797-473c3cb4-5b39-4471-bf33-fd99047a3600.png)<br>
 
 
