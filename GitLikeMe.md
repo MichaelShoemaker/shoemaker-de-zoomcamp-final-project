@@ -294,8 +294,13 @@ Call the key whatever you like. Paste the key from dbt and make sure to check th
 ![PasteKey](https://user-images.githubusercontent.com/7443591/161547721-a1605aa6-9741-4ebf-96f8-82ce6860158e.png)<br>
 
 Back in dbt go to models >> staging >> schema.yml and update the data sources to match what is in Big Query<br>
+![dbtUpdate](https://user-images.githubusercontent.com/7443591/161549757-2e53748d-2a2f-4017-b135-7026bc29ed9c.png)<br>
   
+![BigQueryNames](https://user-images.githubusercontent.com/7443591/161549796-28334e66-cada-431f-a787-1f03361cd70e.png)<br>
+  
+You may also need to go into the stg_stations.sql and other models to update the names to match what is in Big Query.<br>
 
+![Stations](https://user-images.githubusercontent.com/7443591/161549934-e5714544-a68d-436b-81b9-6503e566a610.png)<br>
 
   
 
