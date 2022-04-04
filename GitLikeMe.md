@@ -249,6 +249,10 @@ CLUSTER BY start_station_name
 SELECT * FROM `<your project>.<your dataset>.external_divvy_data` 
 ```  
 # Transform data with DBT
+Go to https://github.com/MichaelShoemaker/dbt-de-zoomcamp and fork the repository.<br>
+
+Go to Account Settings and select new project.
+
 You can create a new project in dbt. Fork this repo https://github.com/MichaelShoemaker/final_project_dbt and then use it in dbt.
   
 # Analytics Reports
