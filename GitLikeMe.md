@@ -251,7 +251,30 @@ SELECT * FROM `<your project>.<your dataset>.external_divvy_data`
 # Transform data with DBT
 Go to https://github.com/MichaelShoemaker/dbt-de-zoomcamp and fork the repository.<br>
 
-Go to Account Settings and select new project.
+In to Account Settings and select new project.<br>
+![dbt_accountsettings](https://user-images.githubusercontent.com/7443591/161543430-127658c0-560b-4c4b-b942-b7b8182d726c.png)<br>
+  
+![dbt_newproject](https://user-images.githubusercontent.com/7443591/161543459-804b93aa-b529-4609-85e5-d6de6a0ba213.png)<br>
+  
+Click Begin<br>
+![dbt_begin](https://user-images.githubusercontent.com/7443591/161543524-bf08613e-3138-4abd-b78c-50d3588aecc6.png)
+
+Name the project whatever you like<br>
+  
+![dbt_name](https://user-images.githubusercontent.com/7443591/161543589-b69283d2-2dcd-410b-8ea5-aa175050376d.png)
+
+Select Big Query<br>
+ ![dbt_bigquery](https://user-images.githubusercontent.com/7443591/161543760-768c4ebc-4fa6-411e-8cde-d90fd9818975.png)
+
+Use the service account json file from our GCP Project<br>
+
+![dbt_json](https://user-images.githubusercontent.com/7443591/161543875-37bdca46-a850-43bf-80f5-2011c2b410da.png)
+
+Choose git clone and paste the ssh link from your github fork<br>
+  
+![dbt_gitclone](https://user-images.githubusercontent.com/7443591/161543959-3bf65d77-57f2-4310-b751-6fff6f3750d5.png)
+
+
 
 You can create a new project in dbt. Fork this repo https://github.com/MichaelShoemaker/final_project_dbt and then use it in dbt.
   
